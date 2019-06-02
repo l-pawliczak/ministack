@@ -1,0 +1,12 @@
+version: '3'
+services:
+  mysql:
+   container_name: ministack
+   image: mysql/mysql-server:5.7
+   environment:
+    MYSQL_DATABASE: ministack_db
+    MYSQL_ROOT_PASSWORD: test1
+    MYSQL_ROOT_HOST: '%'
+   ports:
+   - "3306:3306"
+   restart: always
