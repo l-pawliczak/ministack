@@ -13,7 +13,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "pl.lpawliczak.mininstack.model")
+@EnableJpaRepositories(basePackages = "pl.lpawliczak.mininstack.repository")
 public class JPAConfiguration {
     @Bean
     public DataSource getDataSource() {

@@ -1,10 +1,11 @@
 package pl.lpawliczak.mininstack.service;
 
-import pl.lpawliczak.mininstack.model.Login;
-import pl.lpawliczak.mininstack.model.User;
+import pl.lpawliczak.mininstack.model.LoginForm;
+import pl.lpawliczak.mininstack.model.RegistrationForm;
+import pl.lpawliczak.mininstack.model.UserEntity;
 
 public interface UserService {
-    User register(User user);
+    UserEntity register(RegistrationForm registrationForm);
 
-    User validateUser(Login login);
+    UserSession loginUser(LoginForm loginForm);
 }

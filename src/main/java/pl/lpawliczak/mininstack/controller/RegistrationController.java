@@ -1,23 +1,36 @@
 package pl.lpawliczak.mininstack.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import pl.lpawliczak.mininstack.model.User;
+import pl.lpawliczak.mininstack.model.RegistrationForm;
 import pl.lpawliczak.mininstack.service.UserService;
+
+import javax.validation.Valid;
 
 @Controller
 public class RegistrationController {
     private UserService userService;
 
+    @Autowired
     public RegistrationController(UserService userService) {
         this.userService = userService;
     }
 
+    @GetMapping("/register")
+    public String registerUser() {
+        return "registration-form";
+    }
+
     @PostMapping("/register")
-    @ResponseBody
-    public User registerUser(@RequestBody User user) {
-        return userService.register(user);
+    public String registerUser(@Valid RegistrationForm registrationForm, BindingResult result) {
+        if (result.hasErrors()) {
+            return "redirect:registration-form";
+        }
+        userService.register(registrationForm);
+
+        return "redirect:login-form";
     }
 }

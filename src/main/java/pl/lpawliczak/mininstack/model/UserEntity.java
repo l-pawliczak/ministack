@@ -6,11 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
-@Entity
-public class User {
+@Entity(name = "Users")
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,5 +18,6 @@ public class User {
     private String password;
     private String email;
     private Boolean authorized;
-    private Date created;
+    private LocalDateTime created;
+    private String role;
 }
