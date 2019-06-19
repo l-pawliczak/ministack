@@ -27,10 +27,10 @@ public class RegistrationController {
     @PostMapping("/register")
     public String registerUser(@Valid RegistrationForm registrationForm, BindingResult result) {
         if (result.hasErrors()) {
-            return "redirect:registration-form";
+            return "redirect:register";
         }
         userService.register(registrationForm);
 
-        return "redirect:login-form";
+        return "redirect:login";
     }
 }

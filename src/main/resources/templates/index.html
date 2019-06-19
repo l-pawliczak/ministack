@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-<div th:if="${login}">
-    <h2> Name: th:text="${login}"</h2>
+<div>
+    <span th:text="${login} ?: 'User is not logged in'"></span>
 </div>
 </body>
 </html>

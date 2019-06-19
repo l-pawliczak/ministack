@@ -2,9 +2,9 @@ package pl.lpawliczak.mininstack.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.lpawliczak.mininstack.model.LoginForm;
 import pl.lpawliczak.mininstack.service.UserService;
 import pl.lpawliczak.mininstack.service.UserSession;
@@ -24,14 +24,14 @@ public class LoginController {
     }
 
     @PostMapping(value = "/login")
-    public String login(LoginForm loginForm, Model model) {
+    public String login(LoginForm loginForm, RedirectAttributes redirectAttributes) {
         UserSession user = userService.loginUser(loginForm);
         if (user != null) {
-            model.addAttribute("login", loginForm.getUsername());
+            redirectAttributes.addFlashAttribute("login", loginForm.getUsername());
 
-            return "redirect:index";
+            return "redirect:/";
         }
 
-        return "redirect:login-form";
+        return "redirect:login";
     }
 }
